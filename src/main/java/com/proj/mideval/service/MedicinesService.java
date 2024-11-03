@@ -28,6 +28,13 @@ public class MedicinesService {
         return jdbcTemplate.query(sql, new Object[]{medicineID}, (rs, rowNum) -> mapRowToMedicines(rs)).stream().findFirst();
     }
 
+    // Method to get a list of Medicines by medicine name
+    public List<Medicines> getMedicinesByName(String name) {
+        String sql = "SELECT * FROM Medicines WHERE MedicineName = ?";
+        return jdbcTemplate.query(sql, new Object[]{name}, (rs, rowNum) -> mapRowToMedicines(rs));
+    }
+
+
     // Method to create a new Medicines record
     public int createMedicines(Medicines medicines) {
         String sql = "INSERT INTO Medicines (MedicineName, Cost, Type, CompanyName) VALUES (?, ?, ?, ?)";

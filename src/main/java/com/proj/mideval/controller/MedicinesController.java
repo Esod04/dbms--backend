@@ -45,6 +45,12 @@ public class MedicinesController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/search")
+    public List<Medicines> getMedicinesByName(@RequestParam String name) {
+        return medicinesService.getMedicinesByName(name);
+    }
+
+
     @DeleteMapping("/{medicineID}")
     public ResponseEntity<Void> deleteMedicines(@PathVariable int medicineID) {
         int result = medicinesService.deleteMedicines(medicineID);
